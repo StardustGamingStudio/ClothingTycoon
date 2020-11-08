@@ -1,6 +1,5 @@
 package stardust.game.clothingtycoon.common;
 
-import android.content.Context;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;

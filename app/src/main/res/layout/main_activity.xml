@@ -10,8 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Shop_ConstraintLayout"
-        android:layout_width="1024dp"
-        android:layout_height="1024dp"
+        android:layout_width="2666dp"
+        android:layout_height="1500dp"
         android:layout_gravity="center">
 
         <ImageView
@@ -54,6 +54,7 @@
         android:id="@+id/InfoPanel_LinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:alpha="0.75"
         android:background="@android:color/background_light"
         android:orientation="horizontal">
 

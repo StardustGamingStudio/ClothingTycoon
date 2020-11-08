@@ -3,7 +3,10 @@ package stardust.game.clothingtycoon;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     private int offset_y = 0;
     private int width = 0;
     private int height = 0;
+    private int screenWidth = 0;
+    private int screenHeight = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         ConstraintLayout Shop_ConstraintLayout = findViewById(R.id.Shop_ConstraintLayout);
         final FrameLayout Main_FrameLayout = findViewById(R.id.Main_FrameLayout);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        Point screenSize = new Point();
+        display.getSize(screenSize);
+        screenWidth = screenSize.x;
+        screenHeight = screenSize.y + 128;
+
         Shop_ConstraintLayout.setOnTouchListener(this);
         Main_FrameLayout.setOnTouchListener(new View.OnTouchListener()
         {
@@ -61,6 +72,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     case MotionEvent.ACTION_MOVE:
                         int x = (int) event.getX() - offset_x;
                         int y = (int) event.getY() - offset_y;
+
+                        /*Log.e("XY", "x = " + x + " | y = " + y +
+                                " | Width = " + width + " | Height = " + height +
+                                " | ScreenWidth = " + screenWidth + " | ScreenHeight = " + screenHeight);*/
+
+                        if (x > 0) { x = 0; }
+                        if (y > 0) { y = 0; }
+                        if (x < screenWidth - width) { x = screenWidth - width; }
+                        if (y < screenHeight - height) { y = screenHeight - height; }
 
                         FrameLayout.LayoutParams lp =
                                 new FrameLayout.LayoutParams(
